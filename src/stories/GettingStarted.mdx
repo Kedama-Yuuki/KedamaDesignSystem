@@ -1,0 +1,124 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="はじめに" />
+
+# Kedama Design System
+
+社内業務システム・B2B SaaS 向けの React + TypeScript デザインシステム。
+
+**Calm UI** — 穏やかで、確かなインターフェース。
+
+---
+
+## インストール
+
+```bash
+pnpm add @kedama/design-system
+```
+
+peer dependencies として React が必要です:
+
+```bash
+pnpm add react react-dom
+```
+
+## セットアップ
+
+### 1. CSS の読み込み
+
+アプリケーションのエントリーポイントで CSS をインポートしてください:
+
+```tsx
+// app.tsx または main.tsx
+import '@kedama/design-system/styles';
+```
+
+これにより Tailwind CSS のユーティリティクラスと、デザイントークンの CSS Custom Properties が利用可能になります。
+
+### 2. フォントの読み込み
+
+Kedama Design System は以下のフォントを使用します:
+
+- **DM Sans** — 見出し・UI英語テキスト
+- **Noto Sans JP** — 日本語全般
+- **Noto Sans Mono** — コード・数値
+
+Google Fonts から読み込む例:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+```
+
+## 使い方
+
+```tsx
+import { Button, TextField, Card, Search } from '@kedama/design-system';
+
+function ContactForm() {
+  return (
+    <Card>
+      <Card.Header>
+        <h2>お問い合わせ</h2>
+      </Card.Header>
+      <Card.Body>
+        <TextField label="お名前" placeholder="山田 太郎" />
+        <TextField
+          label="検索"
+          leadingIcon={<Search size={16} />}
+          placeholder="キーワード…"
+        />
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="ghost">キャンセル</Button>
+        <Button variant="primary">送信する</Button>
+      </Card.Footer>
+    </Card>
+  );
+}
+```
+
+## トークンのみ使う
+
+コンポーネントを使わず、トークンの値だけ参照したい場合:
+
+```tsx
+import { semanticColors, spacing, fontSize } from '@kedama/design-system/tokens';
+
+const primaryColor = semanticColors.accent.primary; // '#315039'
+const gap = spacing[16]; // '16px'
+```
+
+## Tailwind ユーティリティ
+
+CSS を読み込むと、すべてのトークンが Tailwind ユーティリティクラスとして利用可能です:
+
+```html
+<div class="bg-surface text-fg-default p-4 rounded-md shadow-sm">
+  <h2 class="font-heading text-2xl font-bold text-fg-default">見出し</h2>
+  <p class="font-body text-md text-fg-muted">本文テキスト</p>
+</div>
+```
+
+## コンポーネント一覧
+
+左のサイドバーから各コンポーネントのストーリーを確認できます:
+
+- **Button** — primary / secondary / ghost / danger
+- **Badge** — success / warning / danger / info
+- **TextField** — ラベル・ヘルプ・エラー・アイコン対応
+- **Card** — Header / Body / Footer
+- **Modal** — `<dialog>` ベース、フォーカストラップ
+- **Icon** — Lucide React ベース、39種
+
+## トークンカタログ
+
+サイドバーの「Tokens」セクションから確認できます:
+
+- **Colors** — プリミティブ・セマンティックカラー
+- **Typography** — フォントファミリー・サイズスケール
+- **Spacing & Layout** — スペーシング・角丸・シャドウ・ボーダー幅
