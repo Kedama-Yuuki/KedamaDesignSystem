@@ -17,6 +17,14 @@ export * from './tokens';
 // コンポーネント
 export { Button, buttonVariants, type ButtonProps } from './components/Button';
 export { Badge, badgeVariants, type BadgeProps } from './components/Badge';
+export { TextField, type TextFieldProps } from './components/TextField';
+export {
+  Card,
+  type CardProps,
+  type CardHeaderProps,
+  type CardBodyProps,
+  type CardFooterProps,
+} from './components/Card';
 
 // ユーティリティ
 export { cn } from './lib/cn';
