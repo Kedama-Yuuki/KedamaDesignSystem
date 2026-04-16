@@ -2,9 +2,29 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { primitiveColors, semanticColors } from '../tokens';
 
+// ─── Primitive Reverse Lookup ───────────────────────────
+// HEX値からプリミティブトークン名を逆引きするマップを構築
+
+function buildPrimitiveLookup(): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const [paletteName, palette] of Object.entries(primitiveColors)) {
+    for (const [step, hex] of Object.entries(palette as Record<string, string>)) {
+      const normalized = hex.toLowerCase();
+      // 同じHEXが複数あり得るが、最初に見つかったものを採用
+      if (!map[normalized]) {
+        map[normalized] = `${paletteName}/${step}`;
+      }
+    }
+  }
+  return map;
+}
+
+const primitiveLookup = buildPrimitiveLookup();
+
 // ─── Color Swatch Component ─────────────────────────────
 
-function Swatch({ color, label }: { color: string; label: string }) {
+function Swatch({ color, label, showReference }: { color: string; label: string; showReference?: boolean }) {
+  const ref = showReference ? primitiveLookup[color.toLowerCase()] : undefined;
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
       <div
@@ -17,12 +37,34 @@ function Swatch({ color, label }: { color: string; label: string }) {
           flexShrink: 0,
         }}
       />
-      <span style={{ fontFamily: '"Noto Sans Mono", monospace', fontSize: '12px', color: '#4B473D' }}>
+      <span style={{ fontFamily: '"Noto Sans Mono", monospace', fontSize: '12px', color: '#4B473D', minWidth: '140px' }}>
         {label}
       </span>
-      <span style={{ fontFamily: '"Noto Sans Mono", monospace', fontSize: '11px', color: '#858073' }}>
+      <span style={{ fontFamily: '"Noto Sans Mono", monospace', fontSize: '11px', color: '#858073', minWidth: '72px' }}>
         {color}
       </span>
+      {ref && (
+        <span style={{
+          fontFamily: '"Noto Sans Mono", monospace',
+          fontSize: '11px',
+          color: '#315039',
+          backgroundColor: '#EEF8F1',
+          padding: '1px 8px',
+          borderRadius: '4px',
+        }}>
+          ← {ref}
+        </span>
+      )}
+      {showReference && !ref && (
+        <span style={{
+          fontFamily: '"Noto Sans Mono", monospace',
+          fontSize: '11px',
+          color: '#858073',
+          fontStyle: 'italic',
+        }}>
+          （直値）
+        </span>
+      )}
     </div>
   );
 }
@@ -114,7 +156,7 @@ function SemanticSection({
       </h3>
       <p style={{ color: '#858073', fontSize: '13px', marginBottom: '12px' }}>{description}</p>
       {Object.entries(tokens).map(([key, value]) => (
-        <Swatch key={key} color={value} label={`${title.toLowerCase()}.${key}`} />
+        <Swatch key={key} color={value} label={`${title.toLowerCase()}.${key}`} showReference />
       ))}
     </div>
   );
