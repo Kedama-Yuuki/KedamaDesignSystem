@@ -1,0 +1,5 @@
+# Heavy directories that should not sync to Dropbox
+node_modules
+dist
+storybook-static
+.pnpm-store

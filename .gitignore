@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Generated files
+src/styles/tokens.css
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Storybook build
+storybook-static/
+
+# Nested git repo (legacy)
+KedamaDesignSystem/
