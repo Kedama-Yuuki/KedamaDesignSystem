@@ -7,22 +7,6 @@ Claude Code がこのリポジトリで作業する際のコンテキスト。
 社内業務システム・B2B SaaS 向けの React + TypeScript デザインシステム。
 **Calm UI** — 穏やかで、確かなインターフェース。
 
-## 設計哲学
-
-原則の優先順位: **Calm > Accessible > Resilient > Consistent > Simple**
-
-詳細は `docs/design-principles.md` と `docs/design-rules.md` を参照。
-
-## 技術スタック
-
-- React 19, TypeScript 6, Vite 6 (library mode)
-- Tailwind CSS v4 (CSS-first config, `@theme` ディレクティブ)
-- Storybook 8 (Vite builder)
-- Vitest + Testing Library
-- Lucide React (アイコン)
-- class-variance-authority (バリアント管理)
-- pnpm
-
 ## 重要なルール
 
 ### トークン
@@ -63,6 +47,22 @@ Claude Code がこのリポジトリで作業する際のコンテキスト。
 - トークン: camelCase (`semanticColors`, `fontFamily`)
 - CSS 変数: kebab-case (`--color-fg-default`, `--primitive-color-primary-600`)
 - ファイル: PascalCase (コンポーネント), camelCase (トークン・ユーティリティ)
+
+## 設計哲学
+
+原則の優先順位: **Calm > Accessible > Resilient > Consistent > Simple**
+
+詳細は `docs/design-principles.md` と `docs/design-rules.md` を参照。
+
+## 技術スタック
+
+- React 19, TypeScript 6, Vite 6 (library mode)
+- Tailwind CSS v4 (CSS-first config, `@theme` ディレクティブ)
+- Storybook 8 (Vite builder)
+- Vitest + Testing Library
+- Lucide React (アイコン)
+- class-variance-authority (バリアント管理)
+- pnpm
 
 ## コマンド
 
