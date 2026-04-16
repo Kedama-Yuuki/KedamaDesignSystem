@@ -1,0 +1,84 @@
+{
+  "name": "@kedama/design-system",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Kedama Design System — Calm UI tokens and components for internal business systems",
+  "license": "UNLICENSED",
+  "private": true,
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./tokens": {
+      "import": {
+        "types": "./dist/src/tokens/index.d.ts",
+        "default": "./dist/tokens.js"
+      },
+      "require": {
+        "default": "./dist/tokens.cjs"
+      }
+    },
+    "./styles": "./dist/design-system.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate:tokens": "tsx scripts/generate-css-tokens.ts",
+    "dev": "storybook dev -p 6006",
+    "build": "pnpm generate:tokens && vite build",
+    "build:storybook": "pnpm generate:tokens && storybook build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/react": "^8.6.18",
+    "@storybook/react-vite": "^8.6.18",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.3.0",
+    "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prettier": "^3.8.3",
+    "storybook": "^8.6.18",
+    "tailwindcss": "^4.2.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^6.4.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.1.4"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild"
+    ]
+  }
+}
