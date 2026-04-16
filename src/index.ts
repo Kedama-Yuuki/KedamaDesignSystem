@@ -25,6 +25,28 @@ export {
   type CardBodyProps,
   type CardFooterProps,
 } from './components/Card';
+export {
+  Modal,
+  type ModalProps,
+  type ModalBodyProps,
+  type ModalFooterProps,
+} from './components/Modal';
+export {
+  Icon,
+  type IconProps,
+  SearchIcon,
+  CloseIcon,
+  PlusIcon,
+  CheckIcon,
+  AlertIcon,
+  InfoIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  TrashIcon,
+  EditIcon,
+  SettingsIcon,
+  UserIcon,
+} from './components/Icon';
 
 // ユーティリティ
 export { cn } from './lib/cn';
