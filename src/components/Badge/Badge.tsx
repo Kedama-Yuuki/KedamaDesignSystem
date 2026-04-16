@@ -1,0 +1,143 @@
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../lib/cn';
+
+/**
+ * Badge バリアントスタイル定義
+ *
+ * Calm UI: 色だけに依存しない情報伝達（原則2: Accessible）。
+ * テキストとの併用が必須。アイコンを添えることを推奨。
+ *
+ * subtle: 背景+テキスト（アラート帯、インラインステータス）
+ * solid: ベタ塗り（通知数、強い視認性が必要な場面）
+ */
+const badgeVariants = cva(
+  [
+    'inline-flex items-center gap-1',
+    'font-medium whitespace-nowrap',
+    'rounded-full',
+    'text-xs',
+    'px-2 py-0.5',
+  ],
+  {
+    variants: {
+      status: {
+        default: '',
+        success: '',
+        warning: '',
+        danger: '',
+        info: '',
+      },
+      appearance: {
+        subtle: '',
+        solid: '',
+      },
+    },
+    compoundVariants: [
+      // ── default ──
+      { status: 'default', appearance: 'subtle', className: 'bg-subtle text-fg-muted' },
+      { status: 'default', appearance: 'solid', className: 'bg-[var(--color-fg-muted)] text-fg-inverse' },
+
+      // ── success ──
+      {
+        status: 'success',
+        appearance: 'subtle',
+        className: 'bg-[var(--color-status-success-bg)] text-[var(--color-status-success)] border border-[var(--color-status-success-border)]',
+      },
+      {
+        status: 'success',
+        appearance: 'solid',
+        className: 'bg-[var(--color-status-success-solid)] text-[var(--color-status-success-fg)]',
+      },
+
+      // ── warning ──
+      {
+        status: 'warning',
+        appearance: 'subtle',
+        className: 'bg-[var(--color-status-warning-bg)] text-[var(--color-status-warning)] border border-[var(--color-status-warning-border)]',
+      },
+      {
+        status: 'warning',
+        appearance: 'solid',
+        className: 'bg-[var(--color-status-warning-solid)] text-[var(--color-status-warning-fg)]',
+      },
+
+      // ── danger ──
+      {
+        status: 'danger',
+        appearance: 'subtle',
+        className: 'bg-[var(--color-status-danger-bg)] text-[var(--color-status-danger)] border border-[var(--color-status-danger-border)]',
+      },
+      {
+        status: 'danger',
+        appearance: 'solid',
+        className: 'bg-[var(--color-status-danger-solid)] text-[var(--color-status-danger-fg)]',
+      },
+
+      // ── info ──
+      {
+        status: 'info',
+        appearance: 'subtle',
+        className: 'bg-[var(--color-status-info-bg)] text-[var(--color-status-info)] border border-[var(--color-status-info-border)]',
+      },
+      {
+        status: 'info',
+        appearance: 'solid',
+        className: 'bg-[var(--color-status-info-solid)] text-[var(--color-status-info-fg)]',
+      },
+    ],
+    defaultVariants: {
+      status: 'default',
+      appearance: 'subtle',
+    },
+  },
+);
+
+// ─── Types ──────────────────────────────────────────────
+
+type BadgeVariantProps = VariantProps<typeof badgeVariants>;
+
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    BadgeVariantProps {
+  /** バッジの左側に表示するアイコン（ドットやSVG） */
+  icon?: React.ReactNode;
+}
+
+// ─── Component ──────────────────────────────────────────
+
+/**
+ * Badge コンポーネント
+ *
+ * ステータスやカテゴリを視覚的に示すラベル。
+ * 色だけに依存せず、必ずテキストと併用すること（原則2: Accessible）。
+ *
+ * @example
+ * ```tsx
+ * <Badge status="success">完了</Badge>
+ * <Badge status="danger" appearance="solid">エラー</Badge>
+ * <Badge status="info" icon={<InfoIcon />}>3件の通知</Badge>
+ * ```
+ */
+export function Badge({
+  className,
+  status,
+  appearance,
+  icon,
+  children,
+  ...props
+}: BadgeProps) {
+  return (
+    <span
+      className={cn(badgeVariants({ status, appearance }), className)}
+      {...props}
+    >
+      {icon}
+      {children}
+    </span>
+  );
+}
+
+Badge.displayName = 'Badge';
+
+export { badgeVariants };
