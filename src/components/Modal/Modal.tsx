@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
+import { X } from 'lucide-react';
 import { cn } from '../../lib/cn';
 
 // ─── Types ──────────────────────────────────────────────
@@ -150,14 +151,7 @@ function ModalRoot({
               )}
               aria-label="閉じる"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="m4 4 8 8M12 4l-8 8"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <X size={16} aria-hidden="true" />
             </button>
           </div>
         )}

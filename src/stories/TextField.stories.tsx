@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TextField } from '../components/TextField';
+import { Search, X } from '../components/Icon';
 
 const meta: Meta<typeof TextField> = {
   title: 'Components/TextField',
@@ -48,28 +49,11 @@ export const Disabled: Story = {
 
 // ─── アイコン付き ───────────────────────────────────────
 
-function SearchIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.5" />
-      <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ClearIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="m5 5 6 6M11 5l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export const WithLeadingIcon: Story = {
   args: {
     label: '検索',
     placeholder: 'キーワードを入力…',
-    leadingIcon: <SearchIcon />,
+    leadingIcon: <Search size={16} />,
   },
 };
 
@@ -77,7 +61,7 @@ export const WithTrailingIcon: Story = {
   args: {
     label: 'フィルター',
     defaultValue: 'デザインシステム',
-    trailingIcon: <ClearIcon />,
+    trailingIcon: <X size={16} />,
   },
 };
 
@@ -112,7 +96,7 @@ export const AllStates: Story = {
       <TextField
         label="検索（アイコン付き）"
         placeholder="検索…"
-        leadingIcon={<SearchIcon />}
+        leadingIcon={<Search size={16} />}
       />
     </div>
   ),

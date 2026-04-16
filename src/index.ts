@@ -31,22 +31,8 @@ export {
   type ModalBodyProps,
   type ModalFooterProps,
 } from './components/Modal';
-export {
-  Icon,
-  type IconProps,
-  SearchIcon,
-  CloseIcon,
-  PlusIcon,
-  CheckIcon,
-  AlertIcon,
-  InfoIcon,
-  ArrowRightIcon,
-  ArrowLeftIcon,
-  TrashIcon,
-  EditIcon,
-  SettingsIcon,
-  UserIcon,
-} from './components/Icon';
+// アイコン（Lucide React ベース）
+export * from './components/Icon';
 
 // ユーティリティ
 export { cn } from './lib/cn';

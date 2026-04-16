@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Button } from '../components/Button';
+import { Plus, ArrowRight } from '../components/Icon';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -101,32 +102,16 @@ export const Disabled: Story = {
 
 // ─── アイコン付き ───────────────────────────────────────
 
-function PlusIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export const WithIconLeft: Story = {
   args: {
-    iconLeft: <PlusIcon />,
+    iconLeft: <Plus size={16} />,
     children: '新規作成',
   },
 };
 
 export const WithIconRight: Story = {
   args: {
-    iconRight: <ArrowRightIcon />,
+    iconRight: <ArrowRight size={16} />,
     children: '次へ進む',
   },
 };
@@ -134,10 +119,10 @@ export const WithIconRight: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-      <Button iconLeft={<PlusIcon />}>新規作成</Button>
-      <Button variant="secondary" iconRight={<ArrowRightIcon />}>次へ進む</Button>
-      <Button variant="ghost" iconLeft={<PlusIcon />}>追加する</Button>
-      <Button variant="danger" iconLeft={<PlusIcon />} loading>削除中…</Button>
+      <Button iconLeft={<Plus size={16} />}>新規作成</Button>
+      <Button variant="secondary" iconRight={<ArrowRight size={16} />}>次へ進む</Button>
+      <Button variant="ghost" iconLeft={<Plus size={16} />}>追加する</Button>
+      <Button variant="danger" iconLeft={<Plus size={16} />} loading>削除中…</Button>
     </div>
   ),
 };
