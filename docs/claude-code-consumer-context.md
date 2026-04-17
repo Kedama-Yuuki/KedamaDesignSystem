@@ -63,20 +63,34 @@ import { Search, Plus, Trash2, Check, AlertTriangle } from '@kedama/design-syste
 - Search, X, Plus, Pencil, Trash2, Check, AlertTriangle, Info, Settings, User, Mail, Bell, Calendar, Loader2, ChevronDown, ArrowRight, ArrowLeft, Eye, EyeOff, Lock, Menu, MoreHorizontal, Filter, Download, Upload, Copy, ExternalLink, FileText, Folder, Users, CircleHelp, RotateCcw, Unlock, MoreVertical, Grip, ChevronUp, ChevronLeft, ChevronRight, AlertCircle
 - size: number（デフォルト24）, className で色指定
 
+### カラーパレット（Tailwindクラス名）
+
+7色パレット。各パレットは11段階（25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900）。
+純白 #FFFFFF は不使用。最明色は birch-25(#F8F7F4)、最暗色は birch-900(#040302)。
+
+- **primary**（苔色 — ブランド）: bg-primary-{step}, text-primary-{step}。メインは primary-600(#315039)
+- **birch**（白樺 — 暖色ニュートラル）: bg-birch-{step}, text-birch-{step}。白の代替=birch-25、黒の代替=birch-900
+- **amber**（琥珀 — 装飾アクセント）: bg-amber-{step}, text-amber-{step}
+- **warning**（オレンジ — 警告）: bg-warning-{step}, text-warning-{step}
+- **danger**（赤 — エラー）: bg-danger-{step}, text-danger-{step}
+- **success**（黄緑 — 成功）: bg-success-{step}, text-success-{step}
+- **info**（青 — 情報）: bg-info-{step}, text-info-{step}
+
 ### スタイリングルール
 
 - Tailwind v4 ユーティリティクラスを使用する
-- 色は必ずセマンティックトークン経由で指定する:
-  - テキスト: text-fg-default, text-fg-muted, text-fg-placeholder
-  - 背景: bg-page, bg-surface, bg-subtle, bg-hover
-  - ボーダー: border-border-default, border-border-strong, border-border-muted
-  - アクセント: bg-accent-primary, text-accent-primary-fg
+- 色はセマンティックトークン経由を優先する:
+  - テキスト: text-fg-default, text-fg-muted, text-fg-placeholder, text-fg-disabled, text-fg-inverse, text-fg-link
+  - 背景: bg-page, bg-surface, bg-surface-raised, bg-subtle, bg-hover, bg-selected, bg-inverse
+  - ボーダー: border-border-default, border-border-strong, border-border-muted, border-border-active, border-border-error
+  - アクセント: bg-accent-primary, bg-accent-primary-hover, text-accent-primary-fg
+  - ステータス: text-[var(--color-status-success)], bg-[var(--color-status-success-bg)]（success/warning/danger/info の各4種: 無印, -bg, -border, -solid, -fg）
+- プリミティブパレット（bg-primary-600, text-birch-500）はセマンティックで表現できない場合のみ使用する
 - HEXの直書きは禁止
-- 純白 #FFFFFF は使わない（最明色は bg-birch-25）
 - フォント: font-heading（見出し）, font-body（本文）, font-mono（コード）
-- 角丸: rounded-sm(4px), rounded-md(8px, メイン), rounded-lg(16px)
-- シャドウ: shadow-sm, shadow-md, shadow-lg
-- スペーシング: p-4(16px), p-6(24px), p-8(32px), gap-2(8px), gap-4(16px)
+- 角丸: rounded-sm(4px), rounded-md(8px, メイン), rounded-lg(16px), rounded-full(9999px)
+- シャドウ: shadow-sm(カード静止), shadow-md(ドロップダウン), shadow-lg(モーダル)
+- スペーシング: p-1(4px), p-2(8px), p-3(12px), p-4(16px), p-6(24px), p-8(32px), p-10(40px), p-12(48px), p-16(64px)
 
 ### デザイン原則
 
