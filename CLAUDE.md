@@ -16,37 +16,17 @@ Claude Code がこのリポジトリで作業する際のコンテキスト。
 - CSS 変数は `pnpm generate:tokens` で自動生成される（`src/styles/tokens.css`）。手動編集禁止
 - カラーシステムは OKLCH ベース。純白 `#FFFFFF` は不使用（最明色は birch/25 `#F8F7F4`）
 
-### コンポーネント
-
-- セマンティック HTML + ARIA 属性を必須とする
-- すべてのインタラクティブ要素はキーボード操作可能にする
-- 必須状態: Default / Hover / Focus / Active / Disabled
-- データ表示コンポーネントは Loading / Empty / Error の3状態を持つ
-- Props は最小限。デフォルト値で賄う。boolean は肯定形（`disabled` not `isDisabled`）
-- バリアント管理には `cva` (class-variance-authority) を使用
-- Tailwind v4 ユーティリティクラスでスタイリング
-
-### コンポーネント追加手順
-
-1. `src/components/{Name}/` ディレクトリを作成
-2. `{Name}.tsx` — コンポーネント本体
-3. `{Name}.test.tsx` — テスト（Testing Library）
-4. `index.ts` — re-export
-5. `src/stories/{Name}.stories.tsx` — Storybook ストーリー（日本語テキストサンプル含む）
-6. `src/index.ts` に export を追加
-
-### テスト
-
-- コンポーネントテストは `src/components/{Name}/{Name}.test.tsx` に配置
-- トークンテスト・コントラスト比テストは `tests/` に配置
-- jsdom 環境、`@testing-library/jest-dom` のマッチャー利用可能
-
 ### 命名規則
 
 - コンポーネント: PascalCase (`Button`, `TextField`)
 - トークン: camelCase (`semanticColors`, `fontFamily`)
 - CSS 変数: kebab-case (`--color-fg-default`, `--primitive-color-primary-600`)
 - ファイル: PascalCase (コンポーネント), camelCase (トークン・ユーティリティ)
+
+### 詳細ルール（`.claude/rules/` に分割）
+
+- `.claude/rules/frontend.md` — コンポーネント実装規約、テスト、Storybook
+- `.claude/rules/figma-design-system.md` — Figma MCP フロー、トークンマッピング
 
 ## 設計哲学
 
